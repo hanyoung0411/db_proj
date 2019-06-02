@@ -25,19 +25,17 @@
                     die("Connection failed: " . mysqli_connect_error());
                 }
 
-                $sql = "SELECT * FROM Course";
+                $sql = "SELECT distinct department from Course";
                 $result = mysqli_query($conn, $sql);
 
 		if (mysqli_num_rows($result) > 0) {
                         // output data of each row
-                        echo "<table border='2'> <tr> <th>Course#</th> <th>name</th> <th>department</th><th>credit</th> </tr>";
+                        echo "<table border='2'> <tr> <th>department</th> </tr>";
                         while($row = mysqli_fetch_assoc($result)) {
                         echo "<tr>";
-                        echo "<td>".$row["course#"]."</td>";
-                        echo "<td>".$row["name"]."</td>";
                         echo "<td>".$row["department"]."</td>";
-                        echo "<td>".$row["credit"]."</td>";
                         echo "</tr>";
+
                     }
                 echo "</table>";
                 } else {
